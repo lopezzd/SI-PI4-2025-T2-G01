@@ -27,7 +27,7 @@ import jakarta.persistence.Id;
 @ToString
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID UUID;
 
     @NotBlank(message = "O nome não pode estar em branco!")
