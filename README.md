@@ -1,75 +1,108 @@
-# Linter Pedagógico com IA (MVP)
+# 📘 Linter Pedagógico Inteligente (Spring AI)
 
-![Java](https://img.shields.io/badge/Java-17%2B-blue?logo=java)
-![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-brightgreen?logo=spring)
-![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento%20(MVP)-orange)
+> "Mais do que corrigir, ensinar."
 
-## 1. Visão Geral
+Este projeto consiste em uma API REST desenvolvida em **Java** com **Spring Boot**, que utiliza Inteligência Artificial (**Spring AI**) para realizar análises estáticas e pedagógicas de códigos Java. O objetivo principal não é apenas apontar erros, mas atuar como um "Mentor Digital", explicando o *porquê* das falhas e ensinando boas práticas.
 
-Este repositório contém o esboço (MVP) de uma API REST para o projeto "Linter Pedagógico". O objetivo principal é atuar como um "mentor digital" para programadores iniciantes.
+## 🎯 Sobre o Projeto
 
-Ao contrário de linters tradicionais que apenas apontam erros, esta API utiliza Inteligência Artificial para analisar snippets de código e fornecer um feedback focado no "porquê" das boas práticas, ajudando ativamente no processo de aprendizado.
+Programadores iniciantes frequentemente enfrentam dificuldades em manter a consistência e a qualidade do código, esbarrando em erros que poderiam ser evitados e recebendo feedbacks "secos" de compiladores tradicionais.
 
-Este MVP é construído em **Java** com o framework **Spring Boot**.
+Esta ferramenta visa resolver esse problema oferecendo:
 
-## 2. O Problema
+* **Análise Pedagógica:** Explicações claras sobre violações de regras.
+* **Boas Práticas:** Verificação de *Clean Code*, princípios *SOLID* e *Design Patterns*.
+* **Feedback em Tempo Real:** Redução de retrabalho e aceleração do aprendizado.
 
-Programadores iniciantes, especialmente estudantes, têm dificuldade em aplicar conceitos de *Clean Code*. Ferramentas atuais são "secas", frustrando o aprendizado. Este projeto visa preencher essa lacuna, oferecendo explicações pedagógicas e motivadoras.
+## 🚀 Funcionalidades Principais
 
-## 3. Funcionalidades do MVP (API)
+O sistema vai além de um linter tradicional (como Checkstyle ou PMD), focando na qualidade semântica e estrutural do código através de IA Generativa.
 
-* **Endpoint de Análise:** Expõe um endpoint (`/analyze`) que recebe um snippet de código Java.
-* **Análise Pedagógica:** Identifica problemas comuns de iniciantes (ex: variáveis não usadas, nomes inadequados, indentação).
-* **Relatório JSON:** Retorna um relatório estruturado em JSON detalhando os problemas encontrados.
-* **Feedback com IA:** Para cada problema, fornece uma explicação clara sobre *por que* aquilo é um problema e uma *sugestão* de como melhorar, tudo com um tom educacional.
+* **Autenticação e Gestão de Usuários:** Cadastro, login e atualização de perfil.
+* **Upload e Análise de Arquivos:** Envio de arquivos `.java` para processamento.
+* **Relatórios Inteligentes com IA:**
+    * Detecção de erros de lógica e sintaxe.
+    * Sugestões de refatoração baseadas em *Clean Code*.
+    * Identificação de violação de princípios SOLID.
+    * Sugestão de *Design Patterns* aplicáveis.
+    *  Explicação educativa do erro (o "porquê" está errado).
 
-## 4. Tecnologias Utilizadas
+## 🛠️ Tecnologias Utilizadas
 
-* **Backend:** Java 17+ e Spring Boot 3.x
-* **Build Tool:** Maven (ou Gradle)
-* **IA (Planejado):** Integração com uma API de LLM (ex: Google Gemini, OpenAI GPT) para geração do feedback pedagógico.
-* **Testes:** JUnit 5 (planejado).
+*  **Linguagem:** Java 17+ 
+* **Framework:** Spring Boot 3.x
+* **IA Integration:** Spring AI (OpenAI/Ollama/Azure - *configurável*)
+* **Banco de Dados:** PostgreSQL (sugerido para persistência de usuários/relatórios)
+*  **Testes:** JUnit 5 
+*  **Ferramentas:** IntelliJ IDEA, Git.
 
-## 5. Como Executar o Projeto
+## 🔌 Documentação da API
 
-### Pré-requisitos
+Abaixo estão os principais *endpoints* da aplicação.
 
-* JDK 17 ou superior
-* Apache Maven
-* Uma chave de API para o serviço de IA que você irá utilizar (ex: Google AI Studio).
+### 👤 Usuários (User Management)
 
-### Passos para Instalação e Execução
+| Método | Rota | Descrição |
+| :--- | :--- | :--- |
+| `POST` | `/auth/register` | Cria uma nova conta de usuário (Aluno/Professor). |
+| `POST` | `/auth/login` | Autentica o usuário e retorna o token (JWT). |
+| `PUT` | `/users/{id}` | Atualiza dados do usuário. |
+| `POST` | `/auth/logout` | Realiza o logout do usuário. |
 
-1.  **Clone o repositório:**
+### 📝 Relatórios e Análise (Reports)
+
+| Método | Rota | Descrição |
+| :--- | :--- | :--- |
+| `POST` | `/reports/upload` | Envia um arquivo `.java` para análise da IA. |
+| `GET` | `/reports` | Lista todos os relatórios gerados pelo usuário logado. |
+| `GET` | `/reports/{id}` | Retorna os detalhes de um relatório específico (JSON/PDF). |
+
+## 🧠 Como Funciona a Análise (Exemplo)
+
+Quando um aluno envia um código com variáveis mal nomeadas ou lógica confusa:
+
+**Entrada (Código do Aluno):**
+
+```java
+int s(int a, int b) {
+    int x = 0; // x não é usado
+    return a + b;
+}
+```
+
+**Saída (Relatório da API):**
+
+> **⚠️ Aviso de Clean Code:** O nome da função `s` não é descritivo.
+>
+>   * **Explicação:** Nomes de métodos devem revelar a intenção do que eles fazem.
+>   * **Sugestão:** Renomeie para `somar(int a, int b)`.
+>
+> **⚠️ Variável Não Utilizada:** A variável `x` foi inicializada mas nunca usada.
+>  \* **Impacto:** Isso consome memória desnecessária e polui a leitura do código.
+
+## 👥 Equipe de Desenvolvimento
+
+Projeto desenvolvido por alunos da **PUC Campinas**:
+
+* **Gabriel Hemo Gonçalves Santos** (RA: 24011872) 
+* **Igor Hein Dalan** (RA: 24023696) 
+* **João Henrique Lopes Divino** (RA: 24000599) 
+* **Marcus Vinícius Lopes Divino** (RA: 24005440) 
+* **Vinicius Bueno de Oliveira** (RA: 24007569) 
+* **Lucas Joaquim de Souza** (RA: 24020901) 
+
+## 🏁 Como Executar
+
+1.  Clone este repositório:
     ```bash
-    git clone [https://github.com/seu-usuario/seu-repositorio.git](https://github.com/seu-usuario/seu-repositorio.git)
-    cd seu-repositorio
+    git clone https://github.com/seu-usuario/linter-pedagogico-ai.git
     ```
-
-2.  **Configure as Variáveis de Ambiente:**
-    Crie ou edite o arquivo `src/main/resources/application.properties` (ou `.yml`) para incluir sua chave de API.
-
-    *Exemplo (`application.properties`):*
-    ```properties
-    # Chave da API de IA (Exemplo para Gemini)
-    ai.api.key=SUA_CHAVE_DE_API_AQUI
-
-    # Porta do servidor (opcional)
-    server.port=8080
-    ```
-
-3.  **Compile e Execute o projeto (via Maven Wrapper):**
+2.  Configure as variáveis de ambiente (Chave da API da IA e Banco de Dados) no `application.properties`.
+3.  Execute o projeto via Maven ou na IDE:
     ```bash
-    # No Windows
-    ./mvnw spring-boot:run
-    
-    # No Linux/Mac
     ./mvnw spring-boot:run
     ```
 
-4.  **Acesse a API:**
-    O servidor estará rodando em `http://localhost:8080`.
+-----
 
-## 6. Estrutura Proposta do Projeto (Spring)
-
-Para organizar o esboço, sugerimos a seguinte estrutura de pacotes padrão:
+*Este projeto foi idealizado para mitigar a evasão em cursos de programação e auxiliar no onboarding de novos desenvolvedores.*

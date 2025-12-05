@@ -1,4 +1,4 @@
-package com.desafio_picpay.infra.security;
+package com.joaohenrique.ailinter.config.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

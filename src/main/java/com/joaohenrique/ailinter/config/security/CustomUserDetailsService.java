@@ -1,7 +1,7 @@
-package com.desafio_picpay.infra.security;
+package com.joaohenrique.ailinter.config.security;
 
-import com.desafio_picpay.domain.user.User;
-import com.desafio_picpay.repositories.UserRepository;
+import com.joaohenrique.ailinter.model.user.User;
+import com.joaohenrique.ailinter.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -1,6 +1,6 @@
-package com.desafio_picpay.infra;
+package com.joaohenrique.ailinter.config;
 
-import com.desafio_picpay.dto.ExceptionDTO;
+import com.joaohenrique.ailinter.dto.ExceptionDTO;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
